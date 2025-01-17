@@ -1,0 +1,6 @@
+<form [formGroup]="tagForm" (ngSubmit)="onSubmit()">
+    <label for="name">Nom: </label>
+    <input id="name" type="text" formControlName="name">
+
+    <button type="submit" [disabled]="!tagForm.valid">Enregistrer</button>
+</form>

@@ -3,10 +3,11 @@ import { TagService } from './../shared/tag.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Tag } from '../shared/tag.model';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-tag-list',
-  imports: [AsyncPipe],
+  imports: [AsyncPipe, RouterLink],
   templateUrl: './tag-list.component.html',
   styleUrl: './tag-list.component.css'
 })

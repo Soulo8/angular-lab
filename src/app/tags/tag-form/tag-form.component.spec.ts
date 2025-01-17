@@ -1,25 +1,22 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TagListComponent } from './tag-list.component';
+import { TagFormComponent } from './tag-form.component';
 import { provideHttpClient } from '@angular/common/http';
-import { provideRouter } from '@angular/router';
-import { routes } from '../../app.routes';
 
-describe('TagListComponent', () => {
-  let component: TagListComponent;
-  let fixture: ComponentFixture<TagListComponent>;
+describe('TagFormComponent', () => {
+  let component: TagFormComponent;
+  let fixture: ComponentFixture<TagFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       providers: [
         provideHttpClient(),
-        provideRouter(routes),
       ],
-      imports: [TagListComponent]
+      imports: [TagFormComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(TagListComponent);
+    fixture = TestBed.createComponent(TagFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

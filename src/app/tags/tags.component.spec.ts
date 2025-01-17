@@ -2,6 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TagsComponent } from './tags.component';
 import { provideHttpClient } from '@angular/common/http';
+import { provideRouter } from '@angular/router';
+import { routes } from '../app.routes';
 
 describe('TagsComponent', () => {
   let component: TagsComponent;
@@ -11,6 +13,7 @@ describe('TagsComponent', () => {
     await TestBed.configureTestingModule({
       providers: [
         provideHttpClient(),
+        provideRouter(routes),
       ],
       imports: [TagsComponent]
     })

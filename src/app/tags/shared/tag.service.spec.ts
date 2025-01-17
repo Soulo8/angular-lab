@@ -49,4 +49,26 @@ describe('TagService', () => {
 
     httpTesting.verify();
   });
+
+  it('making an api post tags request', async () => {
+    const DEFAULT_TAG = {
+      name: 'New tag'
+    };
+
+    const httpTesting = TestBed.inject(HttpTestingController);
+
+    const tag$ = service.addTag(DEFAULT_TAG);
+
+    const tagPromise = firstValueFrom(tag$);
+
+    const req = httpTesting.expectOne(`${environment.apiUrl}/api/tags`, 'Request to post tags');
+
+    expect(req.request.method).toBe('POST');
+
+    req.flush(DEFAULT_TAG);
+
+    expect(await tagPromise).toEqual(DEFAULT_TAG);
+
+    httpTesting.verify();
+  });
 });

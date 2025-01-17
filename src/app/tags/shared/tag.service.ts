@@ -20,9 +20,18 @@ export class TagService {
       map(response => {
         return response.member.map(tag => ({
           ...tag,
-          id: parseInt(tag['@id'].split('/').pop() || '', 10)
+          id: parseInt(tag['@id']?.split('/').pop() || '', 10)
         }));
       })
     );
+  }
+
+  addTag(tag: Tag): Observable<Tag> {
+    return this.http.post<Tag>(`${environment.apiUrl}/api/tags`, tag, {
+      headers: {
+        'accept': 'application/ld+json',
+        'Content-Type': 'application/ld+json'
+      }
+    });
   }
 }
