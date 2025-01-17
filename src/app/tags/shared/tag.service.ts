@@ -56,4 +56,8 @@ export class TagService {
       }
     });
   }
+
+  removeTag(tagId: number): Observable<void> {
+    return this.http.delete<void>(`${environment.apiUrl}/api/tags/${tagId}`);
+  }
 }

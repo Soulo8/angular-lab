@@ -118,4 +118,20 @@ describe('TagService', () => {
 
     httpTesting.verify();
   });
+
+  it('making an api request remove a tag', async () => {
+    const httpTesting = TestBed.inject(HttpTestingController);
+
+    const tag$ = service.removeTag(1);
+
+    firstValueFrom(tag$);
+
+    const req = httpTesting.expectOne(`${environment.apiUrl}/api/tags/1`, 'Request to remove tag');
+
+    expect(req.request.method).toBe('DELETE');
+
+    req.flush(null, { status: 204, statusText: 'No Content' });
+
+    httpTesting.verify();
+  });
 });

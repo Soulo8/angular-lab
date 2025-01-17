@@ -7,6 +7,7 @@
     <li>
         id: {{ tag.id }}, &#64;id: {{ tag['@id'] }}, name: {{ tag.name }}
         <a [routerLink]="['/tags-edit', tag.id]">Modifier</a>
+        <button (click)="onDelete(tag.id ?? 0)">Supprimer</button>
     </li>
 }
 </ul>
