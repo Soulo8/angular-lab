@@ -24,7 +24,31 @@ describe('TagService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('making an api get tags request', async () => {
+  it('making an api request get a tag', async () => {
+    const DEFAULT_TAG = {
+      id: 1,
+      '@id': '/api/tags/1',
+      name: 'Tag 1'
+    };
+
+    const httpTesting = TestBed.inject(HttpTestingController);
+
+    const tag$ = service.getTag('1');
+
+    const tagPromise = firstValueFrom(tag$);
+
+    const req = httpTesting.expectOne(`${environment.apiUrl}/api/tags/1`, 'Request to get a tag');
+
+    expect(req.request.method).toBe('GET');
+
+    req.flush(DEFAULT_TAG);
+
+    expect(await tagPromise).toEqual(DEFAULT_TAG);
+
+    httpTesting.verify();
+  });
+
+  it('making an api request get all tags', async () => {
     const DEFAULT_TAGS = [
       {
         id: 1,
@@ -39,7 +63,7 @@ describe('TagService', () => {
 
     const tagPromise = firstValueFrom(tags$);
 
-    const req = httpTesting.expectOne(`${environment.apiUrl}/api/tags`, 'Request to get tags');
+    const req = httpTesting.expectOne(`${environment.apiUrl}/api/tags`, 'Request to get all tags');
 
     expect(req.request.method).toBe('GET');
 
@@ -50,7 +74,7 @@ describe('TagService', () => {
     httpTesting.verify();
   });
 
-  it('making an api post tags request', async () => {
+  it('making an api request add tag', async () => {
     const DEFAULT_TAG = {
       name: 'New tag'
     };
@@ -61,9 +85,32 @@ describe('TagService', () => {
 
     const tagPromise = firstValueFrom(tag$);
 
-    const req = httpTesting.expectOne(`${environment.apiUrl}/api/tags`, 'Request to post tags');
+    const req = httpTesting.expectOne(`${environment.apiUrl}/api/tags`, 'Request to add tag');
 
     expect(req.request.method).toBe('POST');
+
+    req.flush(DEFAULT_TAG);
+
+    expect(await tagPromise).toEqual(DEFAULT_TAG);
+
+    httpTesting.verify();
+  });
+
+  it('making an api request update a tag', async () => {
+    const DEFAULT_TAG = {
+      id: 1,
+      name: 'Update tag'
+    };
+
+    const httpTesting = TestBed.inject(HttpTestingController);
+
+    const tag$ = service.updateTag(DEFAULT_TAG);
+
+    const tagPromise = firstValueFrom(tag$);
+
+    const req = httpTesting.expectOne(`${environment.apiUrl}/api/tags/1`, 'Request to update tag');
+
+    expect(req.request.method).toBe('PATCH');
 
     req.flush(DEFAULT_TAG);
 

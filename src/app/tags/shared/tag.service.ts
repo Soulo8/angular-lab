@@ -11,6 +11,19 @@ export class TagService {
 
   constructor(private http: HttpClient) { }
 
+  getTag(tagId: string): Observable<Tag> {
+    return this.http.get<Tag>(`${environment.apiUrl}/api/tags/${tagId}`, {
+      headers: {
+        'accept': 'application/ld+json'
+      }
+    }).pipe(
+      map(tag => ({
+        ...tag,
+        id: parseInt(tag['@id']?.split('/').pop() || '', 10)
+      }))
+    );
+  }
+
   getTags(): Observable<Tag[]> {
     return this.http.get<{ member: Tag[] }>(`${environment.apiUrl}/api/tags`, {
       headers: {
@@ -31,6 +44,15 @@ export class TagService {
       headers: {
         'accept': 'application/ld+json',
         'Content-Type': 'application/ld+json'
+      }
+    });
+  }
+
+  updateTag(tag: Tag): Observable<Tag> {
+    return this.http.patch<Tag>(`${environment.apiUrl}/api/tags/${tag.id}`, tag, {
+      headers: {
+        'accept': 'application/ld+json',
+        'Content-Type': 'application/merge-patch+json'
       }
     });
   }
