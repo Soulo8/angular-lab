@@ -1,9 +1,9 @@
 import { AsyncPipe } from '@angular/common';
 import { TagService } from './../shared/tag.service';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Tag } from '../shared/tag.model';
-import { Router, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-tag-list',
@@ -15,8 +15,6 @@ export class TagListComponent implements OnInit {
   tags$!: Observable<Tag[]>;
 
   constructor(private tagService: TagService) {}
-
-  private readonly router = inject(Router);
 
   ngOnInit(): void {
     this.tags$ = this.tagService.getTags();
