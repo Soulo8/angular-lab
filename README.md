@@ -1,3 +1,7 @@
+# Prérequis
+
+- Projet lab_symfony_7.
+
 # Installation
 
 - Installez nvm en suivant les instructions disponibles ici : https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating
