@@ -13,7 +13,7 @@ import { Observable } from 'rxjs';
 })
 export class TagFormComponent implements OnInit {
   tag$!: Observable<Tag>;
-  tagId: string | null = null;
+  tagId = '';
 
   constructor(private tagService: TagService) {}
 
@@ -46,7 +46,7 @@ export class TagFormComponent implements OnInit {
     };
 
     if (this.tag$ !== undefined) {
-      tag.id = parseInt(this.tagId ?? '', 10);
+      tag.id = parseInt(this.tagId);
 
       this.tagService.updateTag(tag).subscribe(() => {
         this.goToTagList();

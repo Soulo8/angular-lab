@@ -19,7 +19,7 @@ export class TagService {
     }).pipe(
       map(tag => ({
         ...tag,
-        id: parseInt(tag['@id']?.split('/').pop() || '', 10)
+        id: parseInt(tag['@id']?.split('/').pop() || '')
       }))
     );
   }
@@ -33,7 +33,7 @@ export class TagService {
       map(response => {
         return response.member.map(tag => ({
           ...tag,
-          id: parseInt(tag['@id']?.split('/').pop() || '', 10)
+          id: parseInt(tag['@id']?.split('/').pop() || '')
         }));
       })
     );
