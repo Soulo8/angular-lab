@@ -8,6 +8,7 @@
 - Accédez au projet, puis exécutez la commande : `nvm install`.
 - Redémarrez votre terminal pour appliquer les modifications.
 - Installez Angular CLI globalement avec la commande : `npm install -g @angular/cli`.
+- Accédez au projet, puis exécutez la commande : `npm install`.
 
 Remarque : Initialement, j'utilisais le projet avec Docker. Cependant, lors de l'exécution des tests,
 Karma ne fonctionnait pas en mode graphique avec Google Chrome.
