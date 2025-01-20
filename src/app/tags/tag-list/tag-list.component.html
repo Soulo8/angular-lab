@@ -3,7 +3,7 @@
 <a class="button" routerLink="/tags-add">Ajouter un tag</a>
 
 <ul class="tag-list">
-@for (tag of tags$ | async ; track tag.id) {
+@for (tag of tags ; track tag.id) {
     <li>
         id: {{ tag.id }}, &#64;id: {{ tag['@id'] }}, name: {{ tag.name }}
         <a [routerLink]="['/tags-edit', tag.id]">Modifier</a>
@@ -11,3 +11,14 @@
     </li>
 }
 </ul>
+
+<mat-paginator #paginator
+               class="tag-paginator"
+               (page)="handlePageEvent($event)"
+               [length]="length"
+               [pageSize]="3"
+               [showFirstLastButtons]="true"
+               [hidePageSize]="true"
+               [pageIndex]="pageIndex"
+               aria-label="Select page">
+</mat-paginator>

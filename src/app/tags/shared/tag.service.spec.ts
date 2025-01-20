@@ -49,25 +49,26 @@ describe('TagService', () => {
   });
 
   it('making an api request get all tags', async () => {
-    const DEFAULT_TAGS = [
-      {
+    const DEFAULT_TAGS = {
+      member: [{
         id: 1,
         '@id': '/api/tags/1',
         name: 'Tag 1'
-      }
-    ];
+      }],
+      totalItems: 1
+    };
 
     const httpTesting = TestBed.inject(HttpTestingController);
 
-    const tags$ = service.getTags();
+    const tags$ = service.getTags(0);
 
     const tagPromise = firstValueFrom(tags$);
 
-    const req = httpTesting.expectOne(`${environment.apiUrl}/api/tags`, 'Request to get all tags');
+    const req = httpTesting.expectOne(`${environment.apiUrl}/api/tags?page=1`, 'Request to get all tags');
 
     expect(req.request.method).toBe('GET');
 
-    req.flush({ member: DEFAULT_TAGS });
+    req.flush(DEFAULT_TAGS);
 
     expect(await tagPromise).toEqual(DEFAULT_TAGS);
 

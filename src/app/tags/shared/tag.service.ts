@@ -1,3 +1,4 @@
+import { CollectionResponse } from './../../shared/collection-response.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Tag } from './tag.model';
@@ -24,17 +25,20 @@ export class TagService {
     );
   }
 
-  getTags(): Observable<Tag[]> {
-    return this.http.get<{ member: Tag[] }>(`${environment.apiUrl}/api/tags`, {
+  getTags(pageIndex: number): Observable<CollectionResponse<Tag>> {
+    return this.http.get<CollectionResponse<Tag>>(`${environment.apiUrl}/api/tags?page=${pageIndex + 1}`, {
       headers: {
         'accept': 'application/ld+json'
       }
     }).pipe(
       map(response => {
-        return response.member.map(tag => ({
-          ...tag,
-          id: parseInt(tag['@id']?.split('/').pop() || '')
-        }));
+        return {
+          member: response.member.map(tag => ({
+            ...tag,
+            id: parseInt(tag['@id']?.split('/').pop() || '')
+          })),
+          totalItems: response.totalItems
+        };
       })
     );
   }
