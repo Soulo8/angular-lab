@@ -20,14 +20,14 @@ export class TagListComponent implements OnInit {
   constructor(private tagService: TagService) {}
 
   ngOnInit(): void {
-    this.getTags(this.pageIndex);
+    this.getTags(this.pageIndex + 1);
   }
 
   handlePageEvent(e: PageEvent) {
     this.pageEvent = e;
     this.pageIndex = e.pageIndex;
 
-    this.getTags(this.pageIndex);
+    this.getTags(this.pageIndex + 1);
   }
 
   onDelete(tagId: number) {
@@ -36,14 +36,14 @@ export class TagListComponent implements OnInit {
     });
   }
 
-  getTags(pageIndex: number) {
-    this.tagService.getTags(pageIndex).subscribe(data => {
+  getTags(page: number) {
+    this.tagService.getTags(page).subscribe(data => {
       this.tags = data['member'];
       this.length = data['totalItems'];
 
-      if (pageIndex != 0 && this.tags.length == 0) {
+      if (page != 1 && this.tags.length == 0) {
         this.pageIndex = Math.ceil(this.length / this.pageSize) - 1;
-        this.getTags(this.pageIndex);
+        this.getTags(this.pageIndex + 1);
       }
     });
   }

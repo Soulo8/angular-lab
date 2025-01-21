@@ -25,8 +25,8 @@ export class TagService {
     );
   }
 
-  getTags(pageIndex: number): Observable<CollectionResponse<Tag>> {
-    return this.http.get<CollectionResponse<Tag>>(`${environment.apiUrl}/api/tags?page=${pageIndex + 1}`, {
+  getTags(page: number): Observable<CollectionResponse<Tag>> {
+    return this.http.get<CollectionResponse<Tag>>(`${environment.apiUrl}/api/tags?page=${page}`, {
       headers: {
         'accept': 'application/ld+json'
       }
