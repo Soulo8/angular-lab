@@ -25,7 +25,6 @@ export class TagListComponent implements OnInit {
 
   handlePageEvent(e: PageEvent) {
     this.pageEvent = e;
-    this.length = e.length;
     this.pageIndex = e.pageIndex;
 
     this.getTags(this.pageIndex);
@@ -33,10 +32,6 @@ export class TagListComponent implements OnInit {
 
   onDelete(tagId: number) {
     this.tagService.removeTag(tagId).subscribe(() => {
-      if (this.pageIndex != 0 && this.length < this.pageSize * (this.pageIndex + 1)) {
-        this.pageIndex--;
-      }
-
       this.getTags(this.pageIndex);
     });
   }
@@ -45,6 +40,11 @@ export class TagListComponent implements OnInit {
     this.tagService.getTags(pageIndex).subscribe(data => {
       this.tags = data['member'];
       this.length = data['totalItems'];
+
+      if (pageIndex != 0 && this.tags.length == 0) {
+        this.pageIndex = Math.ceil(this.length / this.pageSize) - 1;
+        this.getTags(this.pageIndex);
+      }
     });
   }
 }
