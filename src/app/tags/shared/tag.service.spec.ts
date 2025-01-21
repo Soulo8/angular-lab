@@ -60,7 +60,7 @@ describe('TagService', () => {
 
     const httpTesting = TestBed.inject(HttpTestingController);
 
-    const tags$ = service.getTags(0);
+    const tags$ = service.getTags(1);
 
     const tagPromise = firstValueFrom(tags$);
 
