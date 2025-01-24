@@ -64,7 +64,7 @@ describe('TagService', () => {
 
     const tagPromise = firstValueFrom(tags$);
 
-    const req = httpTesting.expectOne(`${environment.apiUrl}/api/tags?page=1`, 'Request to get all tags');
+    const req = httpTesting.expectOne(`${environment.apiUrl}/api/tags?page=1&order[id]=desc`, 'Request to get all tags');
 
     expect(req.request.method).toBe('GET');
 
