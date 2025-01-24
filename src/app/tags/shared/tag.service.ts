@@ -25,8 +25,8 @@ export class TagService {
     );
   }
 
-  getTags(page: number): Observable<CollectionResponse<Tag>> {
-    return this.http.get<CollectionResponse<Tag>>(`${environment.apiUrl}/api/tags?page=${page}`, {
+  getTags(page: number, sortField = 'id', sortDirection = 'desc'): Observable<CollectionResponse<Tag>> {
+    return this.http.get<CollectionResponse<Tag>>(`${environment.apiUrl}/api/tags?page=${page}&order[${sortField}]=${sortDirection}`, {
       headers: {
         'accept': 'application/ld+json'
       }
