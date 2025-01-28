@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { TagFormComponent } from './tag-form.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideHttpClient } from '@angular/common/http';
 
 describe('TagFormComponent', () => {
@@ -11,6 +11,7 @@ describe('TagFormComponent', () => {
     await TestBed.configureTestingModule({
       providers: [
         provideHttpClient(),
+        provideAnimationsAsync(),
       ],
       imports: [TagFormComponent]
     })

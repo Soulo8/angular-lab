@@ -1,10 +1,9 @@
-import { TestBed } from '@angular/core/testing';
-
-import { TagService } from './tag.service';
-import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
-import { firstValueFrom } from 'rxjs';
+import { TagService } from './tag.service';
+import { TestBed } from '@angular/core/testing';
 import { environment } from '../../../environments/environment.development';
+import { firstValueFrom } from 'rxjs';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('TagService', () => {
   let service: TagService;

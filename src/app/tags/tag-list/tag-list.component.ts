@@ -1,10 +1,10 @@
-import { TagService } from './../shared/tag.service';
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { Tag } from '../shared/tag.model';
-import { RouterLink } from '@angular/router';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
-import { MatTableModule, MatTableDataSource } from '@angular/material/table';
 import { MatSort, MatSortModule, Sort } from '@angular/material/sort';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { RouterLink } from '@angular/router';
+import { Tag } from '../shared/tag.model';
+import { TagService } from './../shared/tag.service';
 
 const DEFAULT_SORT_FIELD = 'id';
 const DEFAULT_SORT_DIRECTION = 'desc';
