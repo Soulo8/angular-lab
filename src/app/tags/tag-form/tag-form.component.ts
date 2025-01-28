@@ -1,13 +1,16 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TagService } from '../shared/tag.service';
-import { Tag } from '../shared/tag.model';
-import { Router } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { Tag } from '../shared/tag.model';
+import { TagService } from '../shared/tag.service';
 
 @Component({
   selector: 'app-tag-form',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, MatButtonModule, MatFormFieldModule, MatInputModule],
   templateUrl: './tag-form.component.html',
   styleUrl: './tag-form.component.css'
 })
