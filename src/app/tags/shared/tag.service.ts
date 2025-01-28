@@ -1,8 +1,8 @@
+import { Observable, map } from 'rxjs';
 import { CollectionResponse } from './../../shared/collection-response.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Tag } from './tag.model';
-import { map, Observable } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
 
 @Injectable({
