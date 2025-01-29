@@ -24,14 +24,14 @@ export class TagCreateComponent {
     };
 
     this.tagService.addTag(tag).subscribe(() => {
+      this.snackBar.open('Enregistrement réussi', 'Fermer', {
+        duration: 5 * 1000,
+      });
       this.goToTagList();
     });
   }
 
   goToTagList() {
-    this.snackBar.open('Enregistrement réussi', 'Fermer', {
-      duration: 5 * 1000,
-    });
     this.router.navigate(['tags']);
   }
 }
