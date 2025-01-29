@@ -19,7 +19,7 @@ export class TagFormComponent implements OnInit {
     name: ['', Validators.required]
   });
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.initialized.emit(this.tagForm);
   }
 
