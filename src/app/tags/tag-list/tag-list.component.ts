@@ -30,7 +30,7 @@ export class TagListComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatSort) sort!: MatSort;
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.getTags(this.pageIndex + 1, this.sortField, this.sortDirection);
   }
 
