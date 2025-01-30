@@ -1,7 +1,6 @@
 import { Component, Input, inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { Tag } from '../shared/tag.model';
 import { TagFormComponent } from '../tag-form/tag-form.component';
@@ -14,7 +13,6 @@ import { TagService } from '../shared/tag.service';
   styleUrl: './tag-edit.component.css'
 })
 export class TagEditComponent {
-  tag$!: Observable<Tag>;
   @Input() id = '';
 
   constructor(private tagService: TagService) {}
@@ -23,19 +21,16 @@ export class TagEditComponent {
   private readonly snackBar = inject(MatSnackBar);
 
   onInit(tagForm: FormGroup) {
-    this.tag$ = this.tagService.getTag(this.id);
-
-    this.tag$.subscribe(tag => {
+    this.tagService.getTag(this.id).subscribe(tag => {
       tagForm.patchValue(tag);
     });
   }
 
   onSubmit(tagForm: FormGroup) {
     const tag: Tag = {
+      id: parseInt(this.id),
       name: tagForm.value.name ?? ''
     };
-
-    tag.id = parseInt(this.id);
 
     this.tagService.updateTag(tag).subscribe(() => {
       this.snackBar.open('Enregistrement réussi', 'Fermer', {
