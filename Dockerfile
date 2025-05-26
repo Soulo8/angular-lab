@@ -19,7 +19,7 @@ FROM builder as dev-envs
 
 RUN <<EOF
 apt-get update
-apt-get install -y --no-install-recommends git
+apt-get install -y --no-install-recommends git chromium
 EOF
 
 RUN <<EOF
@@ -29,5 +29,7 @@ usermod -aG docker vscode
 EOF
 # install Docker tools (cli, buildx, compose)
 COPY --from=gloursdocker/docker / /
+
+ENV CHROME_BIN=/usr/bin/chromium
 
 CMD ["ng", "serve", "--host", "0.0.0.0"]
