@@ -9,8 +9,7 @@ import { TagService } from '../shared/tag.service';
 @Component({
   selector: 'app-tag-edit',
   imports: [TagFormComponent],
-  templateUrl: './tag-edit.component.html',
-  styleUrl: './tag-edit.component.css'
+  templateUrl: './tag-edit.component.html'
 })
 export class TagEditComponent {
   @Input() id = '';

@@ -7,8 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 @Component({
   selector: 'app-tag-form',
   imports: [ReactiveFormsModule, MatButtonModule, MatFormFieldModule, MatInputModule],
-  templateUrl: './tag-form.component.html',
-  styleUrl: './tag-form.component.css'
+  templateUrl: './tag-form.component.html'
 })
 export class TagFormComponent implements OnInit {
   initialized = output<FormGroup>();
