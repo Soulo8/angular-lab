@@ -12,8 +12,7 @@ const DEFAULT_SORT_DIRECTION = 'desc';
 @Component({
   selector: 'app-tag-list',
   imports: [RouterLink, MatPaginatorModule, MatSortModule, MatTableModule],
-  templateUrl: './tag-list.component.html',
-  styleUrl: './tag-list.component.css'
+  templateUrl: './tag-list.component.html'
 })
 export class TagListComponent implements OnInit, AfterViewInit {
   tags: Tag[] = [];
