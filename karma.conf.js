@@ -32,7 +32,14 @@ module.exports = function (config) {
       ]
     },
     reporters: ['progress', 'kjhtml'],
-    browsers: ['Chrome'],
+    browsers: ['Chrome', 'chrome_headless_no_sandbox'],
+    // https://karma-runner.github.io/6.4/config/browsers.html#configured-launchers
+    customLaunchers: {
+      chrome_headless_no_sandbox: {
+        base: 'ChromeHeadless',
+        flags: ['--no-sandbox']
+      },
+    },
     restartOnFileChange: true
   });
 };
